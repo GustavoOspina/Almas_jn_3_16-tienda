@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="ALMAS Streetwear. Prendas creadas con propósito y colecciones limitadas.">
+  <title>ALMAS | Streetwear con propósito</title>
+  <style>
+    :root {
+      --black: #101010;
+      --dark: #191919;
+      --gold: #c8a968;
+      --white: #f4f1e9;
+      --gray: #aaa69d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, sans-serif;
+    }
+    button, input, select { font: inherit; }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 6%;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      background: #101010f5;
+      z-index: 5;
+    }
+    .logo {
+      font-size: 27px;
+      letter-spacing: 7px;
+      font-weight: bold;
+    }
+    .logo span { color: var(--gold); }
+    .cart-button {
+      background: none;
+      color: white;
+      border: 1px solid var(--gold);
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+    .hero {
+      min-height: 490px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 65px 20px;
+      background:
+        linear-gradient(#0009,#000b),
+        url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1500') center/cover;
+    }
+    .hero-content { max-width: 650px; }
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: 5px;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: clamp(38px, 8vw, 76px);
+      letter-spacing: 5px;
+      margin: 20px 0;
+    }
+    .hero p { color: #ddd; line-height: 1.7; }
+    .gold-button {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 15px 25px;
+      background: var(--gold);
+      color: #111;
+      border: 0;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    section { padding: 65px 6%; }
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    .section-heading h2 {
+      letter-spacing: 4px;
+      font-size: 27px;
+    }
+    .section-heading p { color: var(--gray); }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 18px;
+      max-width: 1050px;
+      margin: auto;
+    }
+    .product {
+      background: var(--dark);
+      padding-bottom: 20px;
+    }
+    .product img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      background: #252525;
+    }
+    .product-info { padding: 15px; }
+    .product h3 { font-size: 15px; letter-spacing: 1px; }
+    .product p { color: var(--gold); font-weight: bold; }
+    .product select {
+      width: 100%;
+      padding: 11px;
+      background: #292929;
+      color: white;
+      border: 1px solid #555;
+      margin: 8px 0;
+    }
+    .add-button {
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      color: white;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+    }
+    .add-button:hover { background: var(--gold); color: black; }
+    .story {
+      text-align: center;
+      background: #191919;
+      line-height: 1.8;
+    }
+    .story p {
+      color: #c9c5bc;
+      max-width: 650px;
+      margin: auto;
+    }
+    #cart {
+      display: none;
+      max-width: 750px;
+      margin: auto;
+      padding: 25px;
+      background: #222;
+      border: 1px solid var(--gold);
+    }
+    #cart ul { padding-left: 20px; }
+    #cart li { margin: 12px 0; }
+    .remove {
+      background: none;
+      color: #e99;
+      border: 0;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+    .cart-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cart-actions button { flex: 1; min-width: 130px; }
+    .secondary {
+      padding: 13px;
+      color: white;
+      background: transparent;
+      border: 1px solid #777;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 35px 15px;
+      color: var(--gray);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+    @media(max-width: 480px) {
+      header { padding: 16px 4%; }
+      .logo { font-size: 22px; }
+      section { padding: 48px 4%; }
+      .products { gap: 10px; }
+      .product-info { padding: 10px; }
+      .product h3 { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AL<span>M</span>AS</div>
+  <button class="cart-button" onclick="showCart()">
+    BOLSA (<span id="count">0</span>)
+  </button>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">STREETWEAR · EDICIONES LIMITADAS</div>
+      <h1>NO ES MODA.<br>ES PROPÓSITO.</h1>
+      <p>Prendas creadas con propósito. Diseños exclusivos para quienes llevan un mensaje más allá de la apariencia.</p>
+      <a class="gold-button" href="#coleccion">DESCUBRIR COLECCIÓN</a>
+    </div>
+  </div>
+
+  <section id="coleccion">
+    <div class="section-heading">
+      <div class="eyebrow">DROP 01</div>
+      <h2>THE ONE</h2>
+      <p>Colección 01 · Piezas de edición limitada</p>
+    </div>
+
+    <div class="products" id="products"></div>
+  </section>
+
+  <section class="story">
+    <div class="eyebrow">NUESTRA ESENCIA</div>
+    <h2>DISEÑADA CON PROPÓSITO</h2>
+    <p>ALMAS nace de una idea: cada pieza puede contar una historia. No fabricamos solamente prendas; expresamos identidad, fe y propósito.</p>
+  </section>
+
+  <section id="cart">
+    <h2>MI BOLSA</h2>
+    <ul id="cart-items"></ul>
+    <h3 id="total">Total: $0</h3>
+    <div class="cart-actions">
+      <button class="gold-button" onclick="checkout()">PEDIR POR WHATSAPP</button>
+      <button class="secondary" onclick="hideCart()">SEGUIR COMPRANDO</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  ALMAS STREETWEAR<br><br>
+  DISEÑADA CON PROPÓSITO · CREADA PARA DEJAR HUELLA
+</footer>
+
+<script>
+  // CAMBIAR ESTOS DATOS POR LOS PRODUCTOS REALES DE ALMAS
+  const products = [
+    {
+      id: 1,
+      name: "THE ONE · BLACK",
+      price: 79900,
+      number: "01 / 50",
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=700"
+    },
+    {
+      id: 2,
+      name: "THE ONE · WHITE",
+      price: 79900,
+      number: "02 / 50",
+      image: "https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=700"
+    }
+  ];
+
+  let cart = [];
+
+  function money(value) {
+    return "$" + value.toLocaleString("es-CO");
+  }
+
+  function renderProducts() {
+    document.getElementById("products").innerHTML = products.map(p => `
+      <article class="product">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="product-info">
+          <h3>${p.name}</h3>
+          <small>${p.number}</small>
+          <p>${money(p.price)} COP</p>
+          <select id="size-${p.id}">
+            <option value="">Seleccionar talla</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+          </select>
+          <button class="add-button" onclick="addToCart(${p.id})">
+            AGREGAR A LA BOLSA
+          </button>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  function addToCart(id) {
+    const p = products.find(item => item.id === id);
+    const size = document.getElementById("size-" + id).value;
+    if (!size) {
+      alert("Selecciona una talla primero.");
+      return;
+    }
+    cart.push({...p, size});
+    updateCart();
+    alert("Producto agregado a tu bolsa.");
+  }
+
+  function updateCart() {
+    document.getElementById("count").textContent = cart.length;
+    document.getElementById("cart-items").innerHTML = cart.map((p,i) => `
+      <li>${p.name} · Talla ${p.size} · ${money(p.price)}
+      <button class="remove" onclick="removeItem(${i})">Eliminar</button></li>
+    `).join("");
+    document.getElementById("total").textContent =
+      "Total: " + money(cart.reduce((sum,p) => sum + p.price, 0)) + " COP";
+  }
+
+  function removeItem(i) {
+    cart.splice(i,1);
+    updateCart();
+  }
+
+  function showCart() {
+    document.getElementById("cart").style.display = "block";
+    document.getElementById("cart").scrollIntoView({behavior:"smooth"});
+  }
+
+  function hideCart() {
+    document.getElementById("cart").style.display = "none";
+    document.getElementById("coleccion").scrollIntoView({behavior:"smooth"});
+  }
+
+  function checkout() {
+    if (!cart.length) {
+      alert("Tu bolsa está vacía.");
+      return;
+    }
+
+    // REEMPLAZAR CON EL WHATSAPP OFICIAL DE ALMAS
+    const whatsapp = "";
+    if (!/^\d{10,15}$/.test(whatsapp)) {
+      alert("El canal de WhatsApp de ALMAS aún no está configurado.");
+      return;
+    }
+
+    const details = cart.map(p =>
+      `${p.name} - Talla ${p.size} - ${money(p.price)}`
+    ).join("\n");
+
+    const total = cart.reduce((sum,p) => sum + p.price, 0);
+    const message = `Hola ALMAS, quiero realizar este pedido:\n${details}\nTotal: ${money(total)} COP`;
+
+    window.open(
+      "https://wa.me/" + whatsapp + "?text=" + encodeURIComponent(message),
+      "_blank"
+    );
+  }
+
+  renderProducts();
+</script>
+</body>
+</html>
